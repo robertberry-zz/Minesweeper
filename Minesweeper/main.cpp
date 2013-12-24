@@ -19,6 +19,19 @@
 
 // Here is a small helper for you ! Have a look.
 #include "ResourcePath.hpp"
+#include <string.h>
+#include <GameBoard.h>
+
+const int CELL_HEIGHT = 16;
+const int CELL_WIDTH = 16;
+
+sf::Texture *loadTexture(std::string filename) {
+    sf::Texture *texture = new sf::Texture();
+    if (!texture->loadFromFile(resourcePath() + filename)) {
+        return NULL;
+    }
+    return texture;
+}
 
 int main(int, char const**)
 {
@@ -32,29 +45,23 @@ int main(int, char const**)
     }
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
-    // Load a sprite to display
-    sf::Texture texture;
-    if (!texture.loadFromFile(resourcePath() + "cute_image.jpg")) {
-        return EXIT_FAILURE;
-    }
-    sf::Sprite sprite(texture);
-
-    // Create a graphical text to display
-    sf::Font font;
-    if (!font.loadFromFile(resourcePath() + "sansation.ttf")) {
-        return EXIT_FAILURE;
-    }
-    sf::Text text("Hello SFML", font, 50);
-    text.setColor(sf::Color::Black);
-
-    // Load a music to play
-    sf::Music music;
-    if (!music.openFromFile(resourcePath() + "nice_music.ogg")) {
-        return EXIT_FAILURE;
-    }
-
-    // Play the music
-    music.play();
+    sf::Texture *blankCell = loadTexture("empty.png");
+    sf::Texture *flagCell = loadTexture("flag.png");
+    sf::Texture *hiddenCell = loadTexture("hidden.png");
+    sf::Texture *oneCell = loadTexture("one.png");
+    sf::Texture *twoCell = loadTexture("two.png");
+    sf::Texture *threeCell = loadTexture("three.png");
+    sf::Texture *fourCell = loadTexture("four.png");
+    sf::Texture *fiveCell = loadTexture("five.png");
+    sf::Texture *sixCell = loadTexture("six.png");
+    sf::Texture *sevenCell = loadTexture("seven.png");
+    sf::Texture *eightCell = loadTexture("eight.png");
+    
+    GameBoard gameBoard(10, 10);
+    
+    Cell c = gameBoard.getCell(5, 5);
+    c.setFlagged(true);
+    gameBoard.setCell(5, 5, c);
 
     // Start the game loop
     while (window.isOpen())
@@ -77,12 +84,35 @@ int main(int, char const**)
         // Clear screen
         window.clear();
 
-        // Draw the sprite
-        window.draw(sprite);
-
-        // Draw the string
-        window.draw(text);
-
+        // Draw the grid
+        for (int x = 0; x < gameBoard.getRows(); x++) {
+            for (int y = 0; y < gameBoard.getColumns(); y++) {
+                Cell cell = gameBoard.getCell(x, y);
+                sf::Texture *texture = NULL;
+                
+                if (cell.getFlagged()) {
+                    texture = flagCell;
+                } else if (cell.getHidden()) {
+                    texture = hiddenCell;
+                } else {
+                    switch (gameBoard.neighbouringMines(x, y)) {
+                        case 0: texture = blankCell; break;
+                        case 1: texture = oneCell; break;
+                        case 2: texture = twoCell; break;
+                        case 3: texture = threeCell; break;
+                        case 4: texture = fourCell; break;
+                        case 5: texture = fiveCell; break;
+                        case 6: texture = sixCell; break;
+                        case 7: texture = sevenCell; break;
+                        case 8: texture = eightCell; break;
+                    }
+                }
+                sf::Sprite sprite(*texture);
+                sprite.setPosition(x * CELL_WIDTH, y * CELL_HEIGHT);
+                window.draw(sprite);
+            }
+        }
+ 
         // Update the window
         window.display();
     }
