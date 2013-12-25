@@ -20,14 +20,14 @@ private:
     std::vector< std::vector<Cell> > mCells;
     
     /**
-     * If x, y is hidden, reveal it. Do flood reveal if necessary.
+     * If x, y is hidden, reveal it. Do flood reveal if necessary. Return score accrued.
      */
-    void reveal(int x, int y);
+    int reveal(int x, int y);
     
     /**
-     * Horizontal sweep of the board. Step (-1 or +1) determines direction.
+     * Horizontal sweep of the board. Step (-1 or +1) determines direction. Return score accrued.
      */
-    void sweep(int x, int y, int step);
+    int sweep(int x, int y, int step);
     
 public:
     /**
@@ -71,9 +71,9 @@ public:
     bool getIsGameOver();
     
     /**
-     * Trigger click behaviour for x, y
+     * Trigger click behaviour for x, y. Return score accrued.
      */
-    void onClick(int x, int y);
+    int onClick(int x, int y);
     
     /**
      * Trigger right click behaviour for x, y

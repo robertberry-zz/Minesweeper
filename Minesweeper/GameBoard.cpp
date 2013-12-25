@@ -53,9 +53,11 @@ int GameBoard::getColumns() {
     return mColumns;
 }
 
-void GameBoard::onClick(int x, int y) {
+int GameBoard::onClick(int x, int y) {
     if (!mGameOver && getCell(x, y).getHidden()) {
-        reveal(x, y);
+        return reveal(x, y);
+    } else {
+        return 0;
     }
 }
 
@@ -70,7 +72,7 @@ void GameBoard::onRightClick(int x, int y) {
     }
 }
 
-void GameBoard::reveal(int x, int y) {
+int GameBoard::reveal(int x, int y) {
     Cell thisCell = getCell(x, y);
     
     if (thisCell.getHidden()) {
@@ -80,18 +82,23 @@ void GameBoard::reveal(int x, int y) {
         
         if (thisCell.getIsMine()) {
             mGameOver = true;
-            return;
+            return 0;
         }
         
         /** If a tile not adjacent to any neighbouring mines, flood in each direction */
         if (getNeighbouringMines(x, y) == 0) {
-            sweep(x - 1, y, -1);
-            sweep(x + 1, y, 1);
+            return 1 + sweep(x - 1, y, -1) + sweep(x + 1, y, 1);
+        } else {
+            return 1;
         }
+    } else {
+        return 0;
     }
 }
 
-void GameBoard::sweep(int x, int y, int step) {
+int GameBoard::sweep(int x, int y, int step) {
+    int score = 0;
+    
     while (validCoordinate(x, y)) {
         Cell c = getCell(x, y);
         
@@ -102,6 +109,8 @@ void GameBoard::sweep(int x, int y, int step) {
         c.setHidden(false);
         setCell(x, y, c);
         
+        score++;
+        
         if (getNeighbouringMines(x, y) > 0) {
             /** sweep does not go past numbered tiles */
             break;
@@ -109,17 +118,19 @@ void GameBoard::sweep(int x, int y, int step) {
         
         Cell up = getCell(x, y - 1);
         if (up.getHidden() && !up.getIsMine()) {
-            sweep(x, y - 1, 1);
-            sweep(x - 1, y - 1, -1);
+            score += sweep(x, y - 1, 1);
+            score += sweep(x - 1, y - 1, -1);
         }
         Cell down = getCell(x, y + 1);
         if (down.getHidden() && !down.getIsMine()) {
-            sweep(x, y + 1, 1);
-            sweep(x - 1, y + 1, -1);
+            score += sweep(x, y + 1, 1);
+            score += sweep(x - 1, y + 1, -1);
         }
         
         x += step;
-    } 
+    }
+    
+    return score;
 }
 
 bool GameBoard::validCoordinate(int x, int y) {

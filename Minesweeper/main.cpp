@@ -13,6 +13,7 @@
 #include <GameBoard.h>
 #include <memory.h>
 #include "CellTextures.h"
+#include <string>
 
 const int CELL_HEIGHT = 16;
 const int CELL_WIDTH = 16;
@@ -53,6 +54,15 @@ int main(int, char const**)
     gridBorder.setSize(sf::Vector2f(COLUMNS * CELL_WIDTH + 1, ROWS * CELL_HEIGHT + 1));
     gridBorder.setFillColor(sf::Color(86, 86, 86));
     
+    int score = 0;
+    
+    sf::Font scoreFont;
+    scoreFont.loadFromFile(resourcePath() + "sansation.ttf");
+    sf::Text scoreCounter;
+    scoreCounter.setPosition(0, 0);
+    scoreCounter.setColor(sf::Color::Black);
+    scoreCounter.setFont(scoreFont);
+    
     // Start the game loop
     while (window.isOpen())
     {
@@ -66,7 +76,7 @@ int main(int, char const**)
                 
                 if (gameBoard.validCoordinate(gridX, gridY)) {
                     if (event.mouseButton.button == sf::Mouse::Button::Left) {
-                        gameBoard.onClick(gridX, gridY);
+                        score += gameBoard.onClick(gridX, gridY);
                     }
                     if (event.mouseButton.button == sf::Mouse::Button::Right) {
                         gameBoard.onRightClick(gridX, gridY);
@@ -88,9 +98,11 @@ int main(int, char const**)
 
         // Clear screen
         window.clear();
-        
         window.draw(backFill);
         window.draw(gridBorder);
+
+        scoreCounter.setString(std::to_string(score));
+        window.draw(scoreCounter);
 
         // Draw the grid
         for (int y = 0; y < gameBoard.getRows(); y++) {
