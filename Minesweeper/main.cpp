@@ -1,18 +1,8 @@
-
-//
-// Disclamer:
-// ----------
-//
-// This code will work only if you selected window, graphics and audio.
-//
-// Note that the "Run Script" build phase will copy the required frameworks
-// or dylibs to your application bundle so you can execute it on any OS X
-// computer.
-//
-// Your resource files (images, sounds, fonts, ...) are also copied to your
-// application bundle. To get the path to these resource, use the helper
-// method resourcePath() from ResourcePath.hpp
-//
+/**
+ * Minesweeper
+ *
+ * Copyright 2013, Robert Berry
+ */
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
@@ -36,7 +26,7 @@ sf::Texture *loadTexture(std::string filename) {
 int main(int, char const**)
 {
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Minesweeper");
 
     // Set the Icon
     sf::Image icon;
@@ -70,13 +60,28 @@ int main(int, char const**)
         sf::Event event;
         while (window.pollEvent(event))
         {
+            if (event.type == sf::Event::MouseButtonPressed) {
+                int gridX = event.mouseButton.x / CELL_WIDTH;
+                int gridY = event.mouseButton.y / CELL_HEIGHT;
+                
+                if (gameBoard.validCoordinate(gridX, gridY)) {
+                    if (event.mouseButton.button == sf::Mouse::Button::Left) {
+                        gameBoard.onClick(gridX, gridY);
+                    }
+                    if (event.mouseButton.button == sf::Mouse::Button::Right) {
+                        gameBoard.onRightClick(gridX, gridY);
+                    }
+                }
+            }
+            
             // Close window : exit
             if (event.type == sf::Event::Closed) {
                 window.close();
             }
 
             // Escape pressed : exit
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
+            if (event.type == sf::Event::KeyPressed &&
+                event.key.code == sf::Keyboard::Escape) {
                 window.close();
             }
         }
@@ -95,14 +100,14 @@ int main(int, char const**)
                 } else if (cell.getHidden()) {
                     texture = hiddenCell;
                 } else {
-                    switch (gameBoard.neighbouringMines(x, y)) {
+                    switch (gameBoard.getNeighbouringMines(x, y)) {
                         case 0: texture = blankCell; break;
-                        case 1: texture = oneCell; break;
-                        case 2: texture = twoCell; break;
+                        case 1: texture = oneCell;   break;
+                        case 2: texture = twoCell;   break;
                         case 3: texture = threeCell; break;
-                        case 4: texture = fourCell; break;
-                        case 5: texture = fiveCell; break;
-                        case 6: texture = sixCell; break;
+                        case 4: texture = fourCell;  break;
+                        case 5: texture = fiveCell;  break;
+                        case 6: texture = sixCell;   break;
                         case 7: texture = sevenCell; break;
                         case 8: texture = eightCell; break;
                     }
