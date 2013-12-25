@@ -20,13 +20,15 @@ const int CELL_WIDTH = 16;
 
 const int ROWS = 20;
 const int COLUMNS = 30;
-const int MINES = 20;
+const int MINES = 40;
 
 const int BOARD_X_OFFSET = 8;
 const int BOARD_Y_OFFSET = 40;
 
-const int WINDOW_WIDTH = 800;
-const int WINDOW_HEIGHT = 600;
+const int BORDER = 8;
+
+const int WINDOW_WIDTH = COLUMNS * CELL_WIDTH + BORDER * 2;
+const int WINDOW_HEIGHT = BOARD_Y_OFFSET + CELL_HEIGHT * ROWS + BORDER;
 
 int main(int, char const**)
 {
@@ -59,7 +61,7 @@ int main(int, char const**)
     sf::Font scoreFont;
     scoreFont.loadFromFile(resourcePath() + "sansation.ttf");
     sf::Text scoreCounter;
-    scoreCounter.setPosition(0, 0);
+    scoreCounter.setPosition(BORDER, 0);
     scoreCounter.setColor(sf::Color::Black);
     scoreCounter.setFont(scoreFont);
     
