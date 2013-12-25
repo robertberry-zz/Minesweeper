@@ -10,12 +10,12 @@
 #include <Vector>
 #include <stdlib.h>
 
-GameBoard::GameBoard(int rows, int columns) : mRows(rows), mColumns(columns), mGameOver(false) {
+GameBoard::GameBoard(int columns, int rows) : mRows(rows), mColumns(columns), mGameOver(false) {
     mCells = std::vector< std::vector<Cell> >();
     
-    for (int i = 0; i < rows; i++) {
+    for (int i = 0; i < columns; i++) {
         mCells.push_back(std::vector<Cell>());
-        for (int j = 0; j < columns; j++) {
+        for (int j = 0; j < rows; j++) {
             mCells[i].push_back(Cell(false));
         }
     }
@@ -87,15 +87,6 @@ void GameBoard::reveal(int x, int y) {
         if (getNeighbouringMines(x, y) == 0) {
             sweep(x - 1, y, -1);
             sweep(x + 1, y, 1);
-            
-            Cell up = getCell(x, y - 1);
-            if (up.getHidden() && !up.getIsMine()) {
-                reveal(x, y - 1);
-            }
-            Cell down = getCell(x, y + 1);
-            if (down.getHidden() && !down.getIsMine()) {
-                reveal(x, y + 1);
-            }
         }
     }
 }
@@ -116,6 +107,17 @@ void GameBoard::sweep(int x, int y, int step) {
             break;
         }
         
+        Cell up = getCell(x, y - 1);
+        if (up.getHidden() && !up.getIsMine()) {
+            sweep(x, y - 1, 1);
+            sweep(x - 1, y - 1, -1);
+        }
+        Cell down = getCell(x, y + 1);
+        if (down.getHidden() && !down.getIsMine()) {
+            sweep(x, y + 1, 1);
+            sweep(x - 1, y + 1, -1);
+        }
+        
         x += step;
     } 
 }
@@ -125,6 +127,7 @@ bool GameBoard::validCoordinate(int x, int y) {
 }
 
 void GameBoard::populateMines(int n) {
+    srand(time(NULL));
     while (n > 0) {
         int i = rand() % mColumns;
         int j = rand() % mRows;

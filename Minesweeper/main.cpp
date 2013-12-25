@@ -15,6 +15,16 @@
 const int CELL_HEIGHT = 16;
 const int CELL_WIDTH = 16;
 
+const int ROWS = 20;
+const int COLUMNS = 30;
+const int MINES = 20;
+
+const int BOARD_X_OFFSET = 20;
+const int BOARD_Y_OFFSET = 20;
+
+const int WINDOW_WIDTH = 800;
+const int WINDOW_HEIGHT = 600;
+
 sf::Texture *loadTexture(std::string filename) {
     sf::Texture *texture = new sf::Texture();
     if (!texture->loadFromFile(resourcePath() + filename)) {
@@ -26,7 +36,7 @@ sf::Texture *loadTexture(std::string filename) {
 int main(int, char const**)
 {
     // Create the main window
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Minesweeper");
+    sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Minesweeper");
 
     // Set the Icon
     sf::Image icon;
@@ -49,8 +59,12 @@ int main(int, char const**)
     sf::Texture *mineCell = loadTexture("mine.png");
     sf::Texture *blownMineCell = loadTexture("blown-mine.png");
     
-    GameBoard gameBoard(10, 10);
-    gameBoard.populateMines(10);
+    GameBoard gameBoard(COLUMNS, ROWS);
+    gameBoard.populateMines(MINES);
+    
+    sf::RectangleShape backFill;
+    backFill.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
+    backFill.setFillColor(sf::Color(234, 234, 234));
 
     // Start the game loop
     while (window.isOpen())
@@ -60,8 +74,8 @@ int main(int, char const**)
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::MouseButtonPressed) {
-                int gridX = event.mouseButton.x / CELL_WIDTH;
-                int gridY = event.mouseButton.y / CELL_HEIGHT;
+                int gridX = (event.mouseButton.x - BOARD_X_OFFSET) / CELL_WIDTH;
+                int gridY = (event.mouseButton.y - BOARD_Y_OFFSET) / CELL_HEIGHT;
                 
                 if (gameBoard.validCoordinate(gridX, gridY)) {
                     if (event.mouseButton.button == sf::Mouse::Button::Left) {
@@ -87,10 +101,12 @@ int main(int, char const**)
 
         // Clear screen
         window.clear();
+        
+        window.draw(backFill);
 
         // Draw the grid
-        for (int x = 0; x < gameBoard.getRows(); x++) {
-            for (int y = 0; y < gameBoard.getColumns(); y++) {
+        for (int y = 0; y < gameBoard.getRows(); y++) {
+            for (int x = 0; x < gameBoard.getColumns(); x++) {
                 Cell cell = gameBoard.getCell(x, y);
                 sf::Texture *texture = NULL;
                 
@@ -116,7 +132,7 @@ int main(int, char const**)
                     }
                 }
                 sf::Sprite sprite(*texture);
-                sprite.setPosition(x * CELL_WIDTH, y * CELL_HEIGHT);
+                sprite.setPosition(BOARD_X_OFFSET + x * CELL_WIDTH, BOARD_Y_OFFSET + y * CELL_HEIGHT);
                 window.draw(sprite);
             }
         }
