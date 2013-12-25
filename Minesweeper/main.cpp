@@ -46,12 +46,11 @@ int main(int, char const**)
     sf::Texture *sixCell = loadTexture("six.png");
     sf::Texture *sevenCell = loadTexture("seven.png");
     sf::Texture *eightCell = loadTexture("eight.png");
+    sf::Texture *mineCell = loadTexture("mine.png");
+    sf::Texture *blownMineCell = loadTexture("blown-mine.png");
     
     GameBoard gameBoard(10, 10);
-    
-    Cell c = gameBoard.getCell(5, 5);
-    c.setFlagged(true);
-    gameBoard.setCell(5, 5, c);
+    gameBoard.populateMines(10);
 
     // Start the game loop
     while (window.isOpen())
@@ -99,6 +98,10 @@ int main(int, char const**)
                     texture = flagCell;
                 } else if (cell.getHidden()) {
                     texture = hiddenCell;
+                } else if (cell.getExploded()) {
+                    texture = blownMineCell;
+                } else if (cell.getIsMine()) {
+                    texture = mineCell;
                 } else {
                     switch (gameBoard.getNeighbouringMines(x, y)) {
                         case 0: texture = blankCell; break;

@@ -34,3 +34,11 @@ bool Cell::getFlagged() {
 void Cell::setFlagged(bool flagged) {
     mFlagged = flagged;
 }
+
+bool Cell::getExploded() {
+    return mExploded;
+}
+
+void Cell::setExploded(bool exploded) {
+    mExploded = exploded;
+}

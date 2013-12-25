@@ -14,6 +14,7 @@ private:
     bool mMine;
     bool mHidden;
     bool mFlagged;
+    bool mExploded;
     
 public:
     Cell(bool mine);
@@ -26,6 +27,9 @@ public:
     
     void setFlagged(bool flagged);
     bool getFlagged();
+    
+    void setExploded(bool exploded);
+    bool getExploded();
 };
 
 #endif /* defined(__Minesweeper__Cell__) */

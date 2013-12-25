@@ -19,6 +19,8 @@
 		E10111241869F1370028C366 /* three.png in Resources */ = {isa = PBXBuildFile; fileRef = E10111191869F1370028C366 /* three.png */; };
 		E10111251869F1370028C366 /* two.png in Resources */ = {isa = PBXBuildFile; fileRef = E101111A1869F1370028C366 /* two.png */; };
 		E10111281869F15A0028C366 /* GameBoard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E10111261869F15A0028C366 /* GameBoard.cpp */; };
+		E1263BC0186B2BAB00F16C62 /* blown-mine.png in Resources */ = {isa = PBXBuildFile; fileRef = E1263BBE186B2BAB00F16C62 /* blown-mine.png */; };
+		E1263BC1186B2BAB00F16C62 /* mine.png in Resources */ = {isa = PBXBuildFile; fileRef = E1263BBF186B2BAB00F16C62 /* mine.png */; };
 		E187C6171869C97F00B9488D /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = E187C6161869C97F00B9488D /* ResourcePath.mm */; };
 		E187C61A1869C97F00B9488D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E187C6191869C97F00B9488D /* main.cpp */; };
 		E187C61D1869C97F00B9488D /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E187C61C1869C97F00B9488D /* cute_image.jpg */; };
@@ -42,6 +44,8 @@
 		E101111A1869F1370028C366 /* two.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = two.png; sourceTree = "<group>"; };
 		E10111261869F15A0028C366 /* GameBoard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameBoard.cpp; sourceTree = "<group>"; };
 		E10111271869F15A0028C366 /* GameBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameBoard.h; sourceTree = "<group>"; };
+		E1263BBE186B2BAB00F16C62 /* blown-mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blown-mine.png"; sourceTree = "<group>"; };
+		E1263BBF186B2BAB00F16C62 /* mine.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mine.png; sourceTree = "<group>"; };
 		E187C6111869C97F00B9488D /* Minesweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minesweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E187C6151869C97F00B9488D /* Minesweeper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Minesweeper-Info.plist"; sourceTree = "<group>"; };
 		E187C6161869C97F00B9488D /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 		E187C61B1869C97F00B9488D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E1263BBE186B2BAB00F16C62 /* blown-mine.png */,
+				E1263BBF186B2BAB00F16C62 /* mine.png */,
 				E10111101869F1370028C366 /* eight.png */,
 				E10111111869F1370028C366 /* empty.png */,
 				E10111121869F1370028C366 /* five.png */,
@@ -182,6 +188,7 @@
 			files = (
 				E187C6231869C97F00B9488D /* icon.png in Resources */,
 				E10111221869F1370028C366 /* seven.png in Resources */,
+				E1263BC1186B2BAB00F16C62 /* mine.png in Resources */,
 				E10111241869F1370028C366 /* three.png in Resources */,
 				E10111251869F1370028C366 /* two.png in Resources */,
 				E187C6211869C97F00B9488D /* sansation.ttf in Resources */,
@@ -189,6 +196,7 @@
 				E101111B1869F1370028C366 /* eight.png in Resources */,
 				E10111231869F1370028C366 /* six.png in Resources */,
 				E101111D1869F1370028C366 /* five.png in Resources */,
+				E1263BC0186B2BAB00F16C62 /* blown-mine.png in Resources */,
 				E187C61F1869C97F00B9488D /* nice_music.ogg in Resources */,
 				E101111E1869F1370028C366 /* flag.png in Resources */,
 				E10111201869F1370028C366 /* hidden.png in Resources */,

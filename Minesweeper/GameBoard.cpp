@@ -8,6 +8,7 @@
 
 #include "GameBoard.h"
 #include <Vector>
+#include <stdlib.h>
 
 GameBoard::GameBoard(int rows, int columns) : mRows(rows), mColumns(columns), mGameOver(false) {
     mCells = std::vector< std::vector<Cell> >();
@@ -74,6 +75,7 @@ void GameBoard::reveal(int x, int y) {
     
     if (thisCell.getHidden()) {
         thisCell.setHidden(false);
+        thisCell.setExploded(thisCell.getIsMine());
         setCell(x, y, thisCell);
         
         if (thisCell.getIsMine()) {
@@ -122,3 +124,17 @@ bool GameBoard::validCoordinate(int x, int y) {
     return x >= 0 && x < mColumns && y >= 0 && y < mRows;
 }
 
+void GameBoard::populateMines(int n) {
+    while (n > 0) {
+        int i = rand() % mColumns;
+        int j = rand() % mRows;
+        
+        Cell c = getCell(i, j);
+        
+        if (c.getIsMine()) continue;
+        
+        c.setIsMine(true);
+        setCell(i, j, c);
+        n--;
+    }
+}

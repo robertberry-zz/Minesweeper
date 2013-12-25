@@ -39,6 +39,11 @@ public:
      * How many mines neighbour x, y
      */
     int getNeighbouringMines(int x, int y);
+    
+    /**
+     * Set n random cells to contain mines
+     */
+    void populateMines(int n);
 
     /**
      * Cell x, y (by copy)
