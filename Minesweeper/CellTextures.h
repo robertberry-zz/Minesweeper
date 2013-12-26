@@ -9,16 +9,12 @@
 #ifndef __Minesweeper__CellTextures__
 #define __Minesweeper__CellTextures__
 
-#include <Vector>
 #include "TextureKey.h"
+#include "TextureVector.h"
 #include <SFML/Graphics.hpp>
 #include "Cell.h"
 
-class CellTextures {
-private:
-    std::vector< sf::Texture > textures;
-    
-    void appendTexture(std::string filename);
+class CellTextures : public TextureVector {
 public:
     CellTextures();
     

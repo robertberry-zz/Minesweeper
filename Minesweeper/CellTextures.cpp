@@ -8,17 +8,9 @@
 
 #include "CellTextures.h"
 #include "TextureKey.h"
-#include "ResourcePath.hpp"
 #include <SFML/Graphics.hpp>
 
-void CellTextures::appendTexture(std::string filename) {
-    sf::Texture texture;
-    if (texture.loadFromFile(resourcePath() + filename)) {
-        textures.push_back(texture);
-    }
-}
-
-CellTextures::CellTextures() {
+CellTextures::CellTextures() : TextureVector() {
     appendTexture("empty.png");
     appendTexture("one.png");
     appendTexture("two.png");
@@ -36,14 +28,14 @@ CellTextures::CellTextures() {
 
 sf::Texture *CellTextures::getCellTexture(Cell cell, int neighbours) {
     if (cell.getFlagged()) {
-        return &textures[FLAG];
+        return get(FLAG);
     } else if (cell.getHidden()) {
-        return &textures[HIDDEN];
+        return get(HIDDEN);
     } else if (cell.getExploded()) {
-        return &textures[EXPLODED_MINE];
+        return get(EXPLODED_MINE);
     } else if (cell.getIsMine()) {
-        return &textures[REVEALED_MINE];
+        return get(REVEALED_MINE);
     } else {
-        return &textures[neighbours];
+        return get(neighbours);
     }
 }

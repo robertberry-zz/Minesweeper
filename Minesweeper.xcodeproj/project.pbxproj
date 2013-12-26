@@ -22,6 +22,7 @@
 		E1263BC0186B2BAB00F16C62 /* blown-mine.png in Resources */ = {isa = PBXBuildFile; fileRef = E1263BBE186B2BAB00F16C62 /* blown-mine.png */; };
 		E1263BC1186B2BAB00F16C62 /* mine.png in Resources */ = {isa = PBXBuildFile; fileRef = E1263BBF186B2BAB00F16C62 /* mine.png */; };
 		E1263BC4186B5AC400F16C62 /* CellTextures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1263BC2186B5AC400F16C62 /* CellTextures.cpp */; };
+		E12E62B0186C83E900F2344E /* FaceTextures.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E12E62AE186C83E900F2344E /* FaceTextures.cpp */; };
 		E187C6171869C97F00B9488D /* ResourcePath.mm in Sources */ = {isa = PBXBuildFile; fileRef = E187C6161869C97F00B9488D /* ResourcePath.mm */; };
 		E187C61A1869C97F00B9488D /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E187C6191869C97F00B9488D /* main.cpp */; };
 		E187C61D1869C97F00B9488D /* cute_image.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E187C61C1869C97F00B9488D /* cute_image.jpg */; };
@@ -29,6 +30,10 @@
 		E187C6211869C97F00B9488D /* sansation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E187C6201869C97F00B9488D /* sansation.ttf */; };
 		E187C6231869C97F00B9488D /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E187C6221869C97F00B9488D /* icon.png */; };
 		E187C62B1869E1CC00B9488D /* Cell.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E187C6291869E1CC00B9488D /* Cell.cpp */; };
+		E1F5A4EA186C7F03008366C2 /* lose-face.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F5A4E7186C7F03008366C2 /* lose-face.png */; };
+		E1F5A4EB186C7F03008366C2 /* play-face.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F5A4E8186C7F03008366C2 /* play-face.png */; };
+		E1F5A4EC186C7F03008366C2 /* win-face.png in Resources */ = {isa = PBXBuildFile; fileRef = E1F5A4E9186C7F03008366C2 /* win-face.png */; };
+		E1F5A4EF186C7FD3008366C2 /* TextureVector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E1F5A4ED186C7FD3008366C2 /* TextureVector.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +55,8 @@
 		E1263BC2186B5AC400F16C62 /* CellTextures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CellTextures.cpp; sourceTree = "<group>"; };
 		E1263BC3186B5AC400F16C62 /* CellTextures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellTextures.h; sourceTree = "<group>"; };
 		E1263BC5186B5D1300F16C62 /* TextureKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextureKey.h; sourceTree = "<group>"; };
+		E12E62AE186C83E900F2344E /* FaceTextures.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FaceTextures.cpp; sourceTree = "<group>"; };
+		E12E62AF186C83E900F2344E /* FaceTextures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceTextures.h; sourceTree = "<group>"; };
 		E187C6111869C97F00B9488D /* Minesweeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minesweeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E187C6151869C97F00B9488D /* Minesweeper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Minesweeper-Info.plist"; sourceTree = "<group>"; };
 		E187C6161869C97F00B9488D /* ResourcePath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ResourcePath.mm; sourceTree = "<group>"; };
@@ -61,6 +68,11 @@
 		E187C6221869C97F00B9488D /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		E187C6291869E1CC00B9488D /* Cell.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Cell.cpp; sourceTree = "<group>"; };
 		E187C62A1869E1CC00B9488D /* Cell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cell.h; sourceTree = "<group>"; };
+		E1F5A4E7186C7F03008366C2 /* lose-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lose-face.png"; sourceTree = "<group>"; };
+		E1F5A4E8186C7F03008366C2 /* play-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "play-face.png"; sourceTree = "<group>"; };
+		E1F5A4E9186C7F03008366C2 /* win-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win-face.png"; sourceTree = "<group>"; };
+		E1F5A4ED186C7FD3008366C2 /* TextureVector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TextureVector.cpp; sourceTree = "<group>"; };
+		E1F5A4EE186C7FD3008366C2 /* TextureVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextureVector.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +109,12 @@
 				E187C6181869C97F00B9488D /* ResourcePath.hpp */,
 				E187C6191869C97F00B9488D /* main.cpp */,
 				E1263BC2186B5AC400F16C62 /* CellTextures.cpp */,
+				E1F5A4ED186C7FD3008366C2 /* TextureVector.cpp */,
+				E1F5A4EE186C7FD3008366C2 /* TextureVector.h */,
 				E1263BC5186B5D1300F16C62 /* TextureKey.h */,
 				E1263BC3186B5AC400F16C62 /* CellTextures.h */,
+				E12E62AE186C83E900F2344E /* FaceTextures.cpp */,
+				E12E62AF186C83E900F2344E /* FaceTextures.h */,
 				E187C61B1869C97F00B9488D /* Resources */,
 				E187C6141869C97F00B9488D /* Supporting Files */,
 				E187C6291869E1CC00B9488D /* Cell.cpp */,
@@ -120,6 +136,9 @@
 		E187C61B1869C97F00B9488D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E1F5A4E7186C7F03008366C2 /* lose-face.png */,
+				E1F5A4E8186C7F03008366C2 /* play-face.png */,
+				E1F5A4E9186C7F03008366C2 /* win-face.png */,
 				E1263BBE186B2BAB00F16C62 /* blown-mine.png */,
 				E1263BBF186B2BAB00F16C62 /* mine.png */,
 				E10111101869F1370028C366 /* eight.png */,
@@ -202,6 +221,8 @@
 				E101111F1869F1370028C366 /* four.png in Resources */,
 				E101111B1869F1370028C366 /* eight.png in Resources */,
 				E10111231869F1370028C366 /* six.png in Resources */,
+				E1F5A4EC186C7F03008366C2 /* win-face.png in Resources */,
+				E1F5A4EA186C7F03008366C2 /* lose-face.png in Resources */,
 				E101111D1869F1370028C366 /* five.png in Resources */,
 				E1263BC0186B2BAB00F16C62 /* blown-mine.png in Resources */,
 				E187C61F1869C97F00B9488D /* nice_music.ogg in Resources */,
@@ -210,6 +231,7 @@
 				E10111211869F1370028C366 /* one.png in Resources */,
 				E187C61D1869C97F00B9488D /* cute_image.jpg in Resources */,
 				E101111C1869F1370028C366 /* empty.png in Resources */,
+				E1F5A4EB186C7F03008366C2 /* play-face.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,11 +258,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1F5A4EF186C7FD3008366C2 /* TextureVector.cpp in Sources */,
 				E10111281869F15A0028C366 /* GameBoard.cpp in Sources */,
 				E187C62B1869E1CC00B9488D /* Cell.cpp in Sources */,
 				E187C61A1869C97F00B9488D /* main.cpp in Sources */,
 				E187C6171869C97F00B9488D /* ResourcePath.mm in Sources */,
 				E1263BC4186B5AC400F16C62 /* CellTextures.cpp in Sources */,
+				E12E62B0186C83E900F2344E /* FaceTextures.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

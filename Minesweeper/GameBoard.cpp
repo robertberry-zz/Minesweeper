@@ -10,7 +10,7 @@
 #include <Vector>
 #include <stdlib.h>
 
-GameBoard::GameBoard(int columns, int rows) : mRows(rows), mColumns(columns), mGameOver(false) {
+GameBoard::GameBoard(int columns, int rows, int mines) : mRows(rows), mColumns(columns), mGameOver(false), mHiddenCells(columns * rows), mMines(mines) {
     mCells = std::vector< std::vector<Cell> >();
     
     for (int i = 0; i < columns; i++) {
@@ -19,6 +19,8 @@ GameBoard::GameBoard(int columns, int rows) : mRows(rows), mColumns(columns), mG
             mCells[i].push_back(Cell(false));
         }
     }
+    
+    populateMines(mines);
 }
 
 int GameBoard::getNeighbouringMines(int x, int y) {
@@ -55,7 +57,9 @@ int GameBoard::getColumns() {
 
 int GameBoard::onClick(int x, int y) {
     if (!mGameOver && getCell(x, y).getHidden()) {
-        return reveal(x, y);
+        int revealed = reveal(x, y);
+        mHiddenCells -= revealed;
+        return revealed;
     } else {
         return 0;
     }
@@ -76,20 +80,14 @@ int GameBoard::reveal(int x, int y) {
     Cell thisCell = getCell(x, y);
     
     if (thisCell.getHidden()) {
-        thisCell.setHidden(false);
-        thisCell.setExploded(thisCell.getIsMine());
-        setCell(x, y, thisCell);
-        
         if (thisCell.getIsMine()) {
+            thisCell.setHidden(false);
+            thisCell.setExploded(true);
+            setCell(x, y, thisCell);
             mGameOver = true;
             return 0;
-        }
-        
-        /** If a tile not adjacent to any neighbouring mines, flood in each direction */
-        if (getNeighbouringMines(x, y) == 0) {
-            return 1 + sweep(x - 1, y, -1) + sweep(x + 1, y, 1);
         } else {
-            return 1;
+            return drain(x, y);
         }
     } else {
         return 0;
@@ -133,6 +131,21 @@ int GameBoard::sweep(int x, int y, int step) {
     return score;
 }
 
+int GameBoard::drain(int x, int y) {
+    if (!validCoordinate(x, y)) return 0;
+    Cell c = getCell(x, y);
+    if (!c.getHidden() || c.getIsMine()) return 0;
+    
+    /** If a tile not adjacent to any neighbouring mines, flood in each direction */
+    if (getNeighbouringMines(x, y) == 0) {
+        return sweep(x, y, -1) + sweep(x + 1, y, 1);
+    } else {
+        c.setHidden(false);
+        setCell(x, y, c);
+        return 1;
+    }
+}
+
 bool GameBoard::validCoordinate(int x, int y) {
     return x >= 0 && x < mColumns && y >= 0 && y < mRows;
 }
@@ -151,4 +164,12 @@ void GameBoard::populateMines(int n) {
         setCell(i, j, c);
         n--;
     }
+}
+
+bool GameBoard::getIsGameWon() {
+    return !mGameOver && mHiddenCells == mMines;
+}
+
+bool GameBoard::getIsGameOver() {
+    return mGameOver;
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>9C635C53-021E-4CFC-86B8-D6A48713C422</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Minesweeper</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1D689134-F007-4186-8281-C54561E8125F</key>
+		<string>ssh://github.com/robertberry/Minesweeper.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Minesweeper.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1D689134-F007-4186-8281-C54561E8125F</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/robertberry/Minesweeper.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1D689134-F007-4186-8281-C54561E8125F</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1D689134-F007-4186-8281-C54561E8125F</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Minesweeper</string>
+		</dict>
+	</array>
+</dict>
+</plist>

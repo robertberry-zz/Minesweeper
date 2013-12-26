@@ -17,6 +17,8 @@ private:
     bool mGameOver;
     const int mColumns;
     const int mRows;
+    int mHiddenCells;
+    int mMines;
     std::vector< std::vector<Cell> > mCells;
     
     /**
@@ -29,21 +31,23 @@ private:
      */
     int sweep(int x, int y, int step);
     
+    int drain(int x, int y);
+    
+    /**
+     * Set n random cells to contain mines
+     */
+    void populateMines(int n);    
+    
 public:
     /**
-     * Create game board of given number of rows and columns
+     * Create game board of given number of rows and columns with given number of randomly placed mines
      */
-    GameBoard(int rows, int columns);
+    GameBoard(int rows, int columns, int mines);
 
     /**
      * How many mines neighbour x, y
      */
     int getNeighbouringMines(int x, int y);
-    
-    /**
-     * Set n random cells to contain mines
-     */
-    void populateMines(int n);
 
     /**
      * Cell x, y (by copy)
@@ -69,6 +73,11 @@ public:
      * Whether the game is over
      */
     bool getIsGameOver();
+    
+    /**
+     * Whether the player has won the game
+     */
+    bool getIsGameWon();
     
     /**
      * Trigger click behaviour for x, y. Return score accrued.

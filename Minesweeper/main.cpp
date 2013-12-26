@@ -13,10 +13,14 @@
 #include <GameBoard.h>
 #include <memory.h>
 #include "CellTextures.h"
+#include "FaceTextures.h"
 #include <string>
 
 const int CELL_HEIGHT = 16;
 const int CELL_WIDTH = 16;
+
+const int FACE_WIDTH = 26;
+const int FACE_HEIGHT = 26;
 
 const int ROWS = 20;
 const int COLUMNS = 30;
@@ -30,6 +34,9 @@ const int BORDER = 8;
 const int WINDOW_WIDTH = COLUMNS * CELL_WIDTH + BORDER * 2;
 const int WINDOW_HEIGHT = BOARD_Y_OFFSET + CELL_HEIGHT * ROWS + BORDER;
 
+const int FACE_X = (WINDOW_WIDTH - FACE_WIDTH) / 2;
+const int FACE_Y = BORDER;
+
 int main(int, char const**)
 {
     // Create the main window
@@ -42,10 +49,10 @@ int main(int, char const**)
     }
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
     
-    GameBoard gameBoard(COLUMNS, ROWS);
-    gameBoard.populateMines(MINES);
+    GameBoard gameBoard(COLUMNS, ROWS, MINES);
     
     CellTextures cellTextures;
+    FaceTextures faceTextures;
     
     sf::RectangleShape backFill;
     backFill.setSize(sf::Vector2f(WINDOW_WIDTH, WINDOW_HEIGHT));
@@ -115,6 +122,13 @@ int main(int, char const**)
                 window.draw(sprite);
             }
         }
+        
+        // Draw the face
+        sf::Sprite face(*(gameBoard.getIsGameOver() ? faceTextures.getLose() :
+                          gameBoard.getIsGameWon() ? faceTextures.getWin() :
+                          faceTextures.getPlaying()));
+        face.setPosition(FACE_X, FACE_Y);
+        window.draw(face);
  
         // Update the window
         window.display();
