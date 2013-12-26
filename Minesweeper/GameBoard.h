@@ -15,8 +15,8 @@
 class GameBoard {
 private:
     bool mGameOver;
-    const int mColumns;
-    const int mRows;
+    int mColumns;
+    int mRows;
     int mHiddenCells;
     int mMines;
     std::vector< std::vector<Cell> > mCells;

@@ -80,8 +80,11 @@ int main(int, char const**)
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::MouseButtonPressed) {
-                int gridX = (event.mouseButton.x - BOARD_X_OFFSET) / CELL_WIDTH;
-                int gridY = (event.mouseButton.y - BOARD_Y_OFFSET) / CELL_HEIGHT;
+                int mouseX = event.mouseButton.x;
+                int mouseY = event.mouseButton.y;
+                
+                int gridX = (mouseX - BOARD_X_OFFSET) / CELL_WIDTH;
+                int gridY = (mouseY - BOARD_Y_OFFSET) / CELL_HEIGHT;
                 
                 if (gameBoard.validCoordinate(gridX, gridY)) {
                     if (event.mouseButton.button == sf::Mouse::Button::Left) {
@@ -89,6 +92,14 @@ int main(int, char const**)
                     }
                     if (event.mouseButton.button == sf::Mouse::Button::Right) {
                         gameBoard.onRightClick(gridX, gridY);
+                    }
+                } else {
+                    if (mouseX >= FACE_X && mouseX <= FACE_X + FACE_WIDTH &&
+                        mouseY >= FACE_Y && mouseY <= FACE_Y + FACE_HEIGHT &&
+                        event.mouseButton.button == sf::Mouse::Button::Left) {
+                        /** RESTART GAME! */
+                        score = 0;
+                        gameBoard = GameBoard(COLUMNS, ROWS, MINES);
                     }
                 }
             }
